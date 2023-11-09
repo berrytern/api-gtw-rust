@@ -1,12 +1,11 @@
 
 use std::collections::HashMap;
 
-use actix_web::{post, web, App, HttpResponse, HttpServer, Responder, Route};
+use actix_web::{post, web, App, HttpResponse, HttpServer, Responder, Route, HttpRequest};
 use serde::{Serialize, Deserialize};
 mod routes;
 mod configs;
 pub mod infrastructure;
-use routes::loja::get_loja;
 use infrastructure::yaml::controller::load_config;
 use infrastructure::yaml::handlers::register_handlers;
 
@@ -31,6 +30,7 @@ async fn manual_hello() -> impl Responder {
 }
 
 
+type Handle = Box<(dyn Fn(HttpRequest) -> HttpResponse)>;
 
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {

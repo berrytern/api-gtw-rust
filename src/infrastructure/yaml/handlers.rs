@@ -9,21 +9,24 @@ struct ApiEndpoint {
 impl ApiEndpoint {
 
 }
-use actix_web::{get, HttpRequest, HttpResponse, Responder};
-type Handle = Box<(dyn Fn(HttpRequest) -> HttpResponse)>;
-struct Handler {
-    pub method: String,
-    pub handle: Handle
-}
+use actix_web::{get, HttpRequest, HttpResponse, Responder, Handler};
+type Handle = Box<dyn Handler<HttpRequest>>;
+
 
 
 #[get("/")]
 pub async fn get_loja() -> impl Responder {
     HttpResponse::Ok().body("Hello world!")
 }
+#[derive(Clone)]
 struct Proxy;
-impl Proxy {
-    pub fn build_proxy(path: String, method: String) -> Box<(dyn Fn(HttpRequest) -> HttpResponse)> {
+impl Handler<HttpRequest> for Proxy {
+
+    type Output<> = HttpResponse;
+
+    type Future;
+
+    fn call(&self, args: HttpRequest) -> Self::Future {
         fn proxy(info: HttpRequest) -> HttpResponse {
             // do request with method: path
             HttpResponse::Ok().body("info")
