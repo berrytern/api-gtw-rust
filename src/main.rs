@@ -52,6 +52,7 @@ async fn main() -> std::io::Result<()> {
                 }
             }
         }
+        return app;
     })
     .bind(("0.0.0.0", 8080))?
     .run()
