@@ -48,7 +48,7 @@ async fn main() -> std::io::Result<()> {
             for path in host.1{
                 for method in path.1{
                     app
-                        .route(&path.0, methods.get(&method.0).to(method.1));
+                        .route(&path.0, methods.get(&method.0)().to(method.1));
                 }
             }
         }

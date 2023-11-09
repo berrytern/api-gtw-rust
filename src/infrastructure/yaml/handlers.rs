@@ -33,7 +33,7 @@ impl Proxy {
 }
 
 pub fn register_handlers(cf: Config) -> HashMap<String, HashMap<String, HashMap<String, Handle>>>{
-    let hosts: HashMap<String, HashMap<String, HashMap<String, Handle>>> = HashMap::new();
+    let mut hosts: HashMap<String, HashMap<String, HashMap<String, Handle>>> = HashMap::new();
     for key in cf.pipelines {
         for endpoint_key in key.1.api_endpoints {
             for endpointVec in cf.api_endpoints.get(&endpoint_key) {
@@ -45,8 +45,8 @@ pub fn register_handlers(cf: Config) -> HashMap<String, HashMap<String, HashMap<
                                 let mut path_map = HashMap::new();
                                 let mut method_map = HashMap::new();
                                 let mut handle = 
-                                method_map.insert(method, Proxy::build_proxy(path, method.to_string()));
-                                path_map.insert(path, method_map);
+                                method_map.insert(method.to_string(), Proxy::build_proxy(path, method.to_string()));
+                                path_map.insert(path.to_string(), method_map);
                                 hosts.insert(endpoint.host, path_map);
                             }
                         }
