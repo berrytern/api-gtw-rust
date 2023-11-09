@@ -33,17 +33,18 @@ impl Proxy {
 
 pub fn register_handlers(cf: Config) {
     let hosts: HashMap<String, HashMap<String, HashMap<String, Handle>>> = HashMap::new();
-    let handlers_endpoints:  = HashMap::new();
     for key in cf.pipelines {
-        for endpoint_key in cf.api_endpoints {
-            for endpoint in endpoint_key.1 {
-                for method in endpoint.methods {
-                    for path in endpoint.paths {
-                        if hosts.get(&endpoint.host).is_none(){
-                            let path_map = HashMap::new();
-                            let method_map = HashMap::new();
-                            path_map.insert(method, method_map);
-                            hosts.insert(endpoint.host, path_map);
+        for endpoint_key in key.1.api_endpoints {
+            for endpointVec in cf.api_endpoints.get(&endpoint_key) {
+                for endpoint in endpointVec {
+                    for method in &endpoint.methods {
+                        for path in endpoint.paths {
+                            if hosts.get(&endpoint.host).is_none(){
+                                let path_map = HashMap::new();
+                                let method_map = HashMap::new();
+                                path_map.insert(method, method_map);
+                                hosts.insert(endpoint.host, path_map);
+                            }
                         }
                     }
                 }
