@@ -9,8 +9,8 @@ struct ApiEndpoint {
 impl ApiEndpoint {
 
 }
-use actix_web::{get, web, HttpRequest, HttpResponse, Responder};
-type Handle = fn () -> dyn Responder<Body=dyn Any>;
+use actix_web::{get, web, HttpRequest, HttpResponse, Responder, body::BoxBody};
+type Handle = Box<(dyn Fn(HttpRequest) -> HttpResponse)>;
 struct Handler {
     pub method: String,
     pub handle: Handle
@@ -21,17 +21,18 @@ struct Handler {
 pub async fn get_loja() -> impl Responder {
     HttpResponse::Ok().body("Hello world!")
 }
-/*struct Proxy;
+struct Proxy;
 impl Proxy {
-    pub fn build_proxy() -> Box<dyn Fn(HttpRequest) -> dyn Future<Output = HttpResponse>> {
-        async fn proxy(info: HttpRequest) -> HttpResponse {
-            HttpResponse::Ok().body("body")
+    pub fn build_proxy(path: String, method: String) -> Box<(dyn Fn(HttpRequest) -> HttpResponse)> {
+        fn proxy(info: HttpRequest) -> HttpResponse {
+            // do request with method: path
+            HttpResponse::Ok().body("info")
         }
         return Box::new(proxy);
     }
-}*/
+}
 
-pub fn register_handlers(cf: Config) {
+pub fn register_handlers(cf: Config) -> HashMap<String, HashMap<String, HashMap<String, Handle>>>{
     let hosts: HashMap<String, HashMap<String, HashMap<String, Handle>>> = HashMap::new();
     for key in cf.pipelines {
         for endpoint_key in key.1.api_endpoints {
@@ -40,9 +41,12 @@ pub fn register_handlers(cf: Config) {
                     for method in &endpoint.methods {
                         for path in endpoint.paths {
                             if hosts.get(&endpoint.host).is_none(){
-                                let path_map = HashMap::new();
-                                let method_map = HashMap::new();
-                                path_map.insert(method, method_map);
+                                print!("{:?} {:?} {:?}", endpoint.host, path, method);
+                                let mut path_map = HashMap::new();
+                                let mut method_map = HashMap::new();
+                                let mut handle = 
+                                method_map.insert(method, Proxy::build_proxy(path, method.to_string()));
+                                path_map.insert(path, method_map);
                                 hosts.insert(endpoint.host, path_map);
                             }
                         }
@@ -58,6 +62,7 @@ pub fn register_handlers(cf: Config) {
             }
         }*/
     }
+    return hosts;
     /*for key in cf.api_endpoints {
         api_endpoints.push(ApiEndpoint::new(key));
         add_endpoint.add_endpoint()

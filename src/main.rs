@@ -34,7 +34,8 @@ async fn manual_hello() -> impl Responder {
 
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
-    println!("{:?}", load_config("something.yaml"));
+    let mut config = load_config("something.yaml");
+    let mut hosts = register_handlers(config);
 
     let mut methods:HashMap<String, Box<dyn Fn() -> Route>> = HashMap::new();
     methods.insert("GET".to_string(), Box::new(web::get));
@@ -43,11 +44,14 @@ async fn main() -> std::io::Result<()> {
     methods.insert("DELETE".to_string(), Box::new(web::delete));
     HttpServer::new(|| {
         let app = App::new();
-
-            app
-            .service(get_loja)
-            .service(echo)
-            .route("/hey", web::get().to(manual_hello))
+        for host in hosts {
+            for path in host.1{
+                for method in path.1{
+                    app
+                        .route(&path.0, methods.get(&method.0).to(method.1));
+                }
+            }
+        }
     })
     .bind(("0.0.0.0", 8080))?
     .run()
