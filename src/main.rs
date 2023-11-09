@@ -48,9 +48,9 @@ async fn main() -> std::io::Result<()> {
             for path in host.1{
                 for method in path.1{
                     let handle = methods.get(&method.0.to_string());
-                    if let Some(hd) = handle{
+                    if let Some(hd) = handle {
                         app
-                        .route(&path.0, hd());
+                        .route(&path.0, hd.clone()().to(method.1));
                     }
                 }
             }
