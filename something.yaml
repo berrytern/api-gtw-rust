@@ -1,0 +1,399 @@
+api_endpoints:
+  VRFrontV2:
+  - host: 'vr.nutespb.com.br'
+    paths:
+      - '/'
+      - '/login'
+      - '/static/css/<css_path:str>'
+      - '/static/js/<js_path:str>'
+      - '/static/media/<media_path:str>'
+      - '/icons/<icon_path:str>'
+      - '/perfil'
+      - '/faq'
+      - '/pacientes'
+      - '/pacientes/<patient_id:str>'
+      - '/pacientes/<patient_id:str>/<session_id:str>'
+      - '/pacientes/adicionar'
+      - '/pacientes/editar/<patient_id:str>'
+      - '/oculos'
+      - '/oculos/adicionar'
+      - '/oculos/<device_id:str>'
+      - '/admin'
+      - '/admin/adicionar'
+      - '/admin/<admin_id:str>'
+      - '/admin/fases'
+      - '/admin/fases/adicionar'
+      - '/admin/fases/editar/<stage_id:str>'
+      - '/admin/pesquisador/<research_id:str>'
+      - '/admin/pesquisador/adicionar'
+    methods: ['GET']
+  VRFrontDevV2:
+  - host: 'demo.vr.nutespb.com.br'
+    paths:
+      - '/'
+      - '/login'
+      - '/static/css/<css_path:str>'
+      - '/static/js/<js_path:str>'
+      - '/static/media/<media_path:str>'
+      - '/icons/<icon_path:str>'
+      - '/perfil'
+      - '/faq'
+      - '/pacientes'
+      - '/pacientes/<patient_id:str>'
+      - '/pacientes/<patient_id:str>/<session_id:str>'
+      - '/pacientes/adicionar'
+      - '/pacientes/editar/<patient_id:str>'
+      - '/oculos'
+      - '/oculos/adicionar'
+      - '/oculos/<device_id:str>'
+      - '/admin'
+      - '/admin/adicionar'
+      - '/admin/<admin_id:str>'
+      - '/admin/fases'
+      - '/admin/fases/adicionar'
+      - '/admin/fases/editar/<stage_id:str>'
+      - '/admin/pesquisador/<research_id:str>'
+      - '/admin/pesquisador/adicionar'
+    methods: ['GET']
+  VRPublicV1:
+  - host: 'vr.nutespb.com.br'
+    paths:
+      - '/v1/scores'
+      - '/v1/devices/<device_id:str>/scores/<score_id:str>'
+    methods: ['GET']
+  - host: 'vr.nutespb.com.br'
+    paths:
+      - '/v1/devices/<device_id:str>/scores'
+    methods: ['GET', 'POST']
+  VRPublicAuth:
+  - host: 'vr.nutespb.com.br'
+    paths:
+      - '/v2/auth'
+      - '/v2/auth/reset'
+      - '/v2/auth/refresh'
+      - '/v2/auth/devices'
+      - '/v2/auth/devices/<device_id:str>/generatecode'
+    methods: ['POST']
+  VRPrivateV2:
+  - host: 'vr.nutespb.com.br'
+    paths:
+      - '/v2/auth/devices/refresh'
+    methods: ['POST']
+  - host: 'vr.nutespb.com.br'
+    paths:
+      - '/v2/admins'
+    methods: ['GET','POST']
+  - host: 'vr.nutespb.com.br'
+    paths:
+      - '/v2/admins/<admin_id:str>'
+    methods: ['GET', 'PATCH']
+  - host: 'vr.nutespb.com.br'
+    paths:
+      - '/v2/researchers'
+    methods: ['GET','POST']
+  - host: 'vr.nutespb.com.br'
+    paths:
+      - '/v2/researchers/<researcher_id:str>'
+    methods: ['GET', 'PATCH']
+  - host: 'vr.nutespb.com.br'
+    paths:
+      - '/v2/devices'
+    methods: ['GET']
+  - host: 'vr.nutespb.com.br'
+    paths:
+      - '/v2/researchers/<researcher_id:str>/devices'
+    methods: ['GET', 'POST']
+  - host: 'vr.nutespb.com.br'
+    paths:
+      - '/v2/researchers/<researcher_id:str>/devices/<device_id:str>'
+    methods: ['GET', 'PATCH']
+  - host: 'vr.nutespb.com.br'
+    paths:
+      - '/v2/phases'
+    methods: ['GET', 'POST']
+  - host: 'vr.nutespb.com.br'
+    paths:
+      - '/v2/phases/<phase_id:str>'
+    methods: ['GET', 'PATCH', 'DELETE']
+  - host: 'vr.nutespb.com.br'
+    paths:
+      - '/v2/devices/<device_id:str>/phase-instances'
+    methods: ['GET', 'POST']
+  - host: 'vr.nutespb.com.br'
+    paths:
+      - '/v2/devices/<device_id:str>/phase-instances/<phase_instance_id:str>'
+    methods: ['GET', 'PATCH', 'DELETE']
+  - host: 'vr.nutespb.com.br'
+    paths:
+      - '/v2/scores'
+    methods: ['GET']
+  - host: 'vr.nutespb.com.br'
+    paths:
+      - '/v2/devices/<device_id:str>/scores'
+    methods: ['GET', 'POST']
+  - host: 'vr.nutespb.com.br'
+    paths:
+      - '/v2/devices/<device_id:str>/scores/<score_id:str>'
+    methods: ['GET']
+  - host: 'vr.nutespb.com.br'
+    paths:
+      - '/v2/patients'
+    methods: ['GET']
+  - host: 'vr.nutespb.com.br'
+    paths:
+      - '/v2/patients/<patient_id:str>/scores'
+    methods: ['GET']
+  - host: 'vr.nutespb.com.br'
+    paths:
+      - '/v2/patients/<patient_id:str>/scores/<score_id:str>'
+    methods: ['GET']
+  - host: 'vr.nutespb.com.br'
+    paths:
+      - '/v2/researchers/<researcher_id:str>/patients'
+    methods: ['GET', 'POST']
+  - host: 'vr.nutespb.com.br'
+    paths:
+      - '/v2/researchers/<researcher_id:str>/patients/<patient_id:str>'
+    methods: ['GET', 'PATCH', 'DELETE']
+  MDPPublic:
+  - host: 'mdp.nutespb.com.br'
+    paths:
+      - '/v1/auth'
+      - '/v1/auth/reset'
+      - '/v1/auth/refresh'
+    methods: ['POST']
+  MDPPublicDev:
+  - host: 'demo.mdp.nutespb.com.br'
+    paths:
+      - '/v1/auth'
+      - '/v1/auth/reset'
+      - '/v1/auth/refresh'
+    methods: ['POST']
+  MDPPrivateDev:
+  - host: 'demo.mdp.nutespb.com.br'
+    paths:
+      - '/v1/admins'
+    methods: ['GET','POST']
+  - host: 'demo.mdp.nutespb.com.br'
+    paths:
+      - '/v1/admins/<admin_id:str>'
+    methods: ['GET', 'PATCH']
+  - host: 'demo.mdp.nutespb.com.br'
+    paths:
+      - '/v1/navigators'
+    methods: ['GET','POST']
+  - host: 'demo.mdp.nutespb.com.br'
+    paths:
+      - '/v1/navigators/<navigator_id:str>'
+    methods: ['GET', 'PATCH']
+  - host: 'demo.mdp.nutespb.com.br'
+    paths:
+      - '/v1/healthprofessionals'
+    methods: ['GET','POST']
+  - host: 'demo.mdp.nutespb.com.br'
+    paths:
+      - '/v1/healthprofessionals/<healthprofessional_id:str>'
+    methods: ['GET', 'PATCH']
+  - host: 'demo.mdp.nutespb.com.br'
+    paths:
+      - '/v1/patients'
+    methods: ['GET','POST']
+  - host: 'demo.mdp.nutespb.com.br'
+    paths:
+      - '/v1/patients/<patient_id:str>'
+    methods: ['GET', 'PATCH']
+  - host: 'demo.mdp.nutespb.com.br'
+    paths:
+      - '/v1/followups'
+    methods: ['GET']
+  - host: 'demo.mdp.nutespb.com.br'
+    paths:
+      - '/v1/patients/<patient_id:str>/followups'
+    methods: ['GET', 'POST']
+  - host: 'demo.mdp.nutespb.com.br'
+    paths:
+      - '/v1/patients/<patient_id:str>/followups/<followup_id:str>'
+    methods: ['GET', 'PATCH']
+  - host: 'demo.mdp.nutespb.com.br'
+    paths:
+      - '/v1/alerts'
+    methods: ['GET']
+  - host: 'demo.mdp.nutespb.com.br'
+    paths:
+      - '/v1/alerts/<alert_id:str>'
+    methods: ['GET', 'PATCH', 'DELETE']
+  MDPPrivate:
+  - host: 'mdp.nutespb.com.br'
+    paths:
+      - '/v1/admins'
+    methods: ['GET','POST']
+  - host: 'mdp.nutespb.com.br'
+    paths:
+      - '/v1/admins/<admin_id:str>'
+    methods: ['GET', 'PATCH']
+  - host: 'mdp.nutespb.com.br'
+    paths:
+      - '/v1/navigators'
+    methods: ['GET','POST']
+  - host: 'mdp.nutespb.com.br'
+    paths:
+      - '/v1/navigators/<navigator_id:str>'
+    methods: ['GET', 'PATCH']
+  - host: 'mdp.nutespb.com.br'
+    paths:
+      - '/v1/healthprofessionals'
+    methods: ['GET','POST']
+  - host: 'mdp.nutespb.com.br'
+    paths:
+      - '/v1/healthprofessionals/<healthprofessional_id:str>'
+    methods: ['GET', 'PATCH']
+  - host: 'mdp.nutespb.com.br'
+    paths:
+      - '/v1/patients'
+    methods: ['GET','POST']
+  - host: 'mdp.nutespb.com.br'
+    paths:
+      - '/v1/patients/<patient_id:str>'
+    methods: ['GET', 'PATCH']
+  - host: 'mdp.nutespb.com.br'
+    paths:
+      - '/v1/followups'
+    methods: ['GET']
+  - host: 'mdp.nutespb.com.br'
+    paths:
+      - '/v1/patients/<patient_id:str>/followups'
+    methods: ['GET', 'POST']
+  - host: 'mdp.nutespb.com.br'
+    paths:
+      - '/v1/patients/<patient_id:str>/followups/<followup_id:str>'
+    methods: ['GET', 'PATCH']
+  - host: 'mdp.nutespb.com.br'
+    paths:
+      - '/v1/alerts'
+    methods: ['GET']
+  - host: 'mdp.nutespb.com.br'
+    paths:
+      - '/v1/alerts/<alert_id:str>'
+    methods: ['GET', 'PATCH', 'DELETE']
+  MDPFrontend:
+  - host: 'mdp.nutespb.com.br'
+    paths:
+      - '/'
+      - '/static/css/<css_path:str>'
+      - '/static/js/<js_path:str>'
+      - '/static/media/<media_path:str>'
+      - '/icons/<icon_path:str>'
+      - '/login'
+      - '/app/home'
+      - '/app/home/<patient_id:str>/followups'
+      - '/app/home/<patient_id:str>/followups/<followup_id:str>'
+      - '/app/profile'
+      - '/app/profile/healthprofessionals'
+      - '/app/profile/healthprofessionals/<health_professional_id:str>'
+      - '/app/profile/navigators'
+      - '/app/profile/navigators/<navigator_id:str>'
+      - '/app/profile/admins'
+      - '/app/profile/admins/<admin_id:str>'
+      - '/app/alert'
+      - '/app/relevance'
+      - '/app/dashboad'
+      - '/app/administration'
+    methods: ['GET']
+  MDPFrontendDev:
+  - host: 'demo.mdp.nutespb.com.br'
+    paths:
+      - '/'
+      - '/static/css/<css_path:str>'
+      - '/static/js/<js_path:str>'
+      - '/static/media/<media_path:str>'
+      - '/icons/<icon_path:str>'
+      - '/login'
+      - '/app/home'
+      - '/app/home/<patient_id:str>/followups'
+      - '/app/home/<patient_id:str>/followups/<followup_id:str>'
+      - '/app/profile'
+      - '/app/profile/healthprofessionals'
+      - '/app/profile/healthprofessionals/<health_professional_id:str>'
+      - '/app/profile/navigators'
+      - '/app/profile/navigators/<navigator_id:str>'
+      - '/app/profile/admins'
+      - '/app/profile/admins/<admin_id:str>'
+      - '/app/alert'
+      - '/app/relevance'
+      - '/app/dashboad'
+      - '/app/administration'
+    methods: ['GET']
+
+service_endpoints:
+  vrV1Service:
+    url: !ENV ${VRV1_SERVICE:https://localhost:1001}
+  vrV2Service:
+    url: !ENV ${VRV2_SERVICE:https://localhost:2001}
+  vrFrontDevService:
+    url: !ENV ${VR_FRONT_DEV_SERVICE:https://localhost:2002}
+  vrFrontService:
+    url: !ENV ${VR_FRONT_SERVICE:https://localhost:2002}
+  mdpV1DevService:
+    url: !ENV ${MDPV1_DEV_SERVICE:https://localhost:3001}
+  mdpV1Service:
+    url: !ENV ${MDPV1_SERVICE:https://localhost:3001}
+  mdpFrontendDevService:
+    url: !ENV ${MDPFRONT_DEV_SERVICE:https://localhost:4001}
+  mdpFrontendService:
+    url: !ENV ${MDPFRONT_SERVICE:https://localhost:4001}
+
+policies:
+  - proxy
+
+pipelines:
+  publicV1Pipeline:
+    api_endpoints:
+      - VRPublicV1
+    policies:
+      - proxy:
+          serviceEndpoint: vrV1Service
+  publicV2Pipeline:
+    api_endpoints:
+      - VRPublicAuth
+      - VRPrivateV2
+    policies:
+      - proxy:
+          serviceEndpoint: vrV2Service
+  publicFrontDevPipeline:
+    api_endpoints:
+      - VRFrontDevV2
+    policies:
+      - proxy:
+          serviceEndpoint: vrFrontDevService
+  publicFrontPipeline:
+    api_endpoints:
+      - VRFrontV2
+    policies:
+      - proxy:
+          serviceEndpoint: vrFrontService
+  publicMDPV1Pipeline:
+    api_endpoints:
+      - MDPPublic
+      - MDPPrivate
+    policies:
+      - proxy:
+          serviceEndpoint: mdpV1Service
+  publicMDPV1DevPipeline:
+    api_endpoints:
+      - MDPPublicDev
+      - MDPPrivateDev
+    policies:
+      - proxy:
+          serviceEndpoint: mdpV1DevService
+  publicMDPFrontendDevPipeline:
+    api_endpoints:
+      - MDPFrontendDev
+    policies:
+      - proxy:
+          serviceEndpoint: mdpFrontendDevService
+  publicMDPFrontendPipeline:
+    api_endpoints:
+      - MDPFrontend
+    policies:
+      - proxy:
+          serviceEndpoint: mdpFrontendService
