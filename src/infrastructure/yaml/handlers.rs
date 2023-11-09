@@ -1,4 +1,4 @@
-use std::{collections::HashMap, any::Any, future::Future};
+use std::{collections::HashMap};
 use configs::config::Config;
 
 use crate::configs;
@@ -9,7 +9,7 @@ struct ApiEndpoint {
 impl ApiEndpoint {
 
 }
-use actix_web::{get, web, HttpRequest, HttpResponse, Responder, body::BoxBody};
+use actix_web::{get, HttpRequest, HttpResponse, Responder};
 type Handle = Box<(dyn Fn(HttpRequest) -> HttpResponse)>;
 struct Handler {
     pub method: String,
